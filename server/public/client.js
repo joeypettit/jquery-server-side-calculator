@@ -52,25 +52,37 @@ function processChar(event){
     // capture charactar associated with the button that was pushed
    let thisChar = $(event.target).data('char');
 
-
-    // apply logic to ensure incoming charactar was entered correctly, input rules
-    // concatenate incoming charactar to global array keys as a string
-    // return charactar as a string, or 'quit' if user input was bad
-   checkAndPushChar(thisChar);
-
-    // return out of function if input from user was bad
-   if(thisChar === 'quit'){
+   // clear function: if thisChar is "c", then call calculator reset and return
+   if(thisChar === 'c'){
+    clearCalculator();
     return;
-   }else if(thisChar === '='){
-    // put the function to POST object here
-
-   }else{
-    // append charactar to the dom
    }
 
+   // equals function: send global object to server for calculation (POST)
+   // recieve answer from server and append to DOM.
+   if(thisChar === '='){
+    // PUT POST HERE
+    // RECIEVE ANSWER
+    // Set answer to calcObject.num1
+    // put answer in numDisplay in DOM
+   }
 
+   
+    
+    // apply logic to ensure incoming charactar was entered correctly (input rules)
+    // concatenate incoming charactar to global array keys as a string
+    // return charactar as a string, or 'quit' if user input was bad
+   let charToAppend = checkAndPushChar(thisChar);
 
-
+    // return out of function if input from user was bad
+   if(charToAppend === 'quit'){
+    console.log('in processChar, return out for incorrect input');
+    return;
+   } else {
+     // append charactar to the dom
+    $('#numDisplay').append(charToAppend);
+   
+   }
 }
 
 
@@ -100,24 +112,26 @@ function checkAndPushChar(thisChar){
 
     // check if previous charToCheck was a '.', if it was ignore input of a second '.'
     if((calcObject.num1[calcObject.num1.length - 1] === '.' || calcObject.num2[calcObject.num1.length] - 1 === '.') && charToCheck==="."){
+        console.log('previous char was a "."');
         return 'quit';
         // if calcObject.num1 already has a '.', ignore input of a second '.'
     } else if (calcObject.num1.includes('.') && calcObject.num2 ==='' && charToCheck === '.'){
+        console.log('num1 already has a "."');
         return 'quit';
         // if calcObject.num2 already has a '.', ignore input of a second '.'
     } else if (calcObject.num2.includes('.')  && charToCheck === '.'){
-        return 'quit'
+        console.log('num2 already has a "."');
+        return 'quit';
     }
 
 
     // ~~~~~~~~~~~~~~~~~~ num1 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // if statement checks if an operator has been submitted to object. If operator
     // is not there, then this must be the first number ===> concatenate charToCheck to calcObject.num1
-    if (calcObject.operator === '' && (charToCheck >= '0' && charToCheck <= '9')|| charToCheck === '.'){
+    if (calcObject.operator === '' && ((charToCheck >= '0' && charToCheck <= '9')|| charToCheck === '.')){
         calcObject.num1 += charToCheck;
-            console.log(charToCheck);
             console.log('updating num1', calcObject);
-            return;
+            return charToCheck;
     }
 
     // ~~~~~~~~~~~~~~~~~ operator ~~~~~~~~~~~~~~~~~~~~~~~
@@ -126,7 +140,7 @@ function checkAndPushChar(thisChar){
         if (charToCheck === '*' || charToCheck === '/' || charToCheck === '+' || charToCheck === '-'){
             calcObject.operator = charToCheck;
             console.log('updating operator', calcObject);
-            return;
+            return charToCheck;
         }    
 
     // ~~~~~~~~~~~~~~~~ num2 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -134,31 +148,35 @@ function checkAndPushChar(thisChar){
             // in the calculation, concatenate charToCheck to calcObject.num2
         if(calcObject.operator != '' && (charToCheck >= '0' && charToCheck <= '9' || charToCheck === '.')){
             calcObject.num2 += charToCheck;
-            console.log('updating num2', calcObject.num2);
-            return;
+            console.log('updating num2', calcObject);
+            return charToCheck;
         } 
         
    
-    } 
+} 
+
+// clear numDisplay on DOM and reset global object
+function clearCalculator(){
+    $('#numDisplay').empty();
+    calcObject = {
+        num1: '',
+        num2: '',
+        operator: ''
+    }
+
+}
+
+// receive all previous calculations from server
+// clear history list on DOM
+// append updated list
+function appendHistory(){
 
 
-
-//     displayChar(char)
-
-// function displayChar(char){
-
-
-// }
-
-// function clearCalculator(){
-//     // clear and reset global object
-
-//     // clear DOM
-// }
-
+}
 
 
 
 
 // ~~~~~~~~~~ IF TIME ~~~~~~~~~~~
 // -light up last key that was pressed on DOM.
+// -style it up

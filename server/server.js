@@ -16,7 +16,25 @@ app.use(express.urlencoded({ extended: true }));
 
 
 
+// let calcObject = {
+//     num1: '',
+//     num2: '',
+//     operator: ''
+// }
+function stringToNum(object){
+    let num1 = object.num1;
+    let num2 = object.num2;
+    let operator = object.operator;
+    let answer = '';
 
+    if(operator === '+'){
+        answer = Number(num1) + Number(num2);
+    }
+
+
+
+
+}
 
 
 
