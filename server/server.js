@@ -27,8 +27,12 @@ function getAnswer(object){
     } else if ( operator === '/'){
         theAnswer = Number(num1) / Number(num2);
     }
+
+    // round answer to two decimal places
+    theAnswer = theAnswer.toFixed(2);
+
     // return an object with full calculation and answer
-    let answerAndCalc = {answer: theAnswer, fullCalc: `${num1} ${operator} ${num2}`} ;
+    let answerAndCalc = {answer: theAnswer, fullCalc: `${num1} ${operator} ${num2} = ${theAnswer}`} ;
     return answerAndCalc;
 }
 
