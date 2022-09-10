@@ -16,20 +16,26 @@ function getAnswer(object){
     let num1 = object.num1;
     let num2 = object.num2;
     let operator = object.operator;
-    let answer = '';
+    let theAnswer = '';
 
     if(operator === '+'){
-        answer = Number(num1) + Number(num2);
+        theAnswer = Number(num1) + Number(num2);
     } else if( operator === '-'){
-        answer = Number(num1) - Number(num2);
+        theAnswer = Number(num1) - Number(num2);
     } else if( operator === '*'){
-        answer = Number(num1) * Number(num2);
+        theAnswer = Number(num1) * Number(num2);
     } else if ( operator === '/'){
-        answer = Number(num1) / Number(num2);
+        theAnswer = Number(num1) / Number(num2);
     }
-    // return as a string and round to two decimal places
-    return String(answer.toFixed(2));
+    // return an object with full calculation and answer
+    let answerAndCalc = {answer: theAnswer, fullCalc: `${num1} ${operator} ${num2}`} ;
+    return answerAndCalc;
 }
+
+// data
+
+// calculated will be an array of objects {answer: 4, fullCalc: '2 + 2 = 4'}
+let calculated = [];
 
 
 // set up static file server
@@ -41,12 +47,26 @@ app.use(express.urlencoded({ extended: true }));
 
 // ~~~~~~~~ POST REQUESTS ~~~~~~~~~~~
 app.post('/calculate', (req, res) => {
-    let answer = getAnswer(req.body);
+    let answerAndCalc = getAnswer(req.body);
+    calculated.push(answerAndCalc);
     console.log(req.body);
-    console.log('in /calculate, answer is:', answer);
-    
+    console.log('in /calculate, answerAndCalc:', answerAndCalc);
+    res.sendStatus(201);
 })
 
+
+// ~~~~~~~~ GET REQUESTS ~~~~~~~~~~
+
+app.get('/getAnswer', (req, res) => {
+    res.send()
+
+
+
+})
+
+// GET history object
+
+// GET 
 
 
 
