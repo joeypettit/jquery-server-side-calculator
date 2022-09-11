@@ -236,12 +236,30 @@ function equals(){
             // append #numDisplay with latestAnswer
             $('#numDisplay').append(latestAnswer);
 
+            // call updateHistory to append history to DOM
+            updateHistory(response);
+
         });
-
-
     })
 }
 
+// clear DOM history section
+// append updated history list from incoming calc history array of objects
+function updateHistory(historyArray){
+    // empty history on DOM
+    $('#history').empty();
+
+    // append fullCalc key from each object in array as new list item
+    $('#history').append(() =>{
+        let appendString = '';
+        for (let i = historyArray.length - 1; i >= 0; i--){
+            appendString += `<li class = "calcList">${historyArray[i].fullCalc}</li>`;
+            console.log('appendString =', appendString);
+        }
+        return appendString;
+    })
+
+}
     
     
     
