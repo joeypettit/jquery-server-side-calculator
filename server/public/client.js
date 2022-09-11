@@ -4,10 +4,15 @@ $(document).ready(onReady);
 function onReady(){
     console.log('jq and js');
     buttonHandlers();
+    clearCalculator();
 
-
-
-
+    // GET calculation history, updated history to DOM
+    $.ajax({
+        method: 'GET',
+        url: '/getAnswerHistory'
+    }).then( (response) =>{
+        updateHistory(response);
+    });
 }
 
 // global object which holds each calculation
@@ -280,4 +285,7 @@ function updateHistory(historyArray){
 // ~~~~~~~~~~ IF TIME ~~~~~~~~~~~
 // -light up last key that was pressed on DOM.
 // -style it up
-// make it so integer answers dont have decimal with zeros (if statment in serverside calulator)
+
+// -make it so integer answers dont have decimal with zeros (if statment in serverside calulator)
+// -limit accuracy of calculator to two decimal places
+
