@@ -7,7 +7,7 @@ body{
 #calcShell{
     box-sizing: content-box;
     width: 220px;
-    height: 450px;
+    height: 375px;
     background-color: rgb(39, 39, 37);
     margin: 2em;
     padding: .5em;
@@ -17,7 +17,7 @@ body{
     display: flex;
     justify-content: flex-start;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
 }
 
 /* Screen Area*/
@@ -48,7 +48,6 @@ img{
     
 }
 
-
 #titleAndScreen{
     background-color: rgb(141, 162, 125);
 
@@ -65,10 +64,6 @@ img{
     display: flex;
     flex-direction: column;
     align-items: center;
-
-
-
-
 }
 
 #numDisplay{
@@ -77,10 +72,64 @@ img{
     background-color: rgb(149,160,106);
     border: 3px solid black;
     border-radius: .2em;
-
-
 }
 
 
-/* BUTTONS */
+/* ~~~~~~~~~~~BUTTONS~~~~~~~~~~ */
+
+#calcBody{
+    width: 170px;
+    margin: 20px;
+    text-align: center;
+}
+
+#numberRows{
+    display: flex;
+    justify-content: space-between; 
+    flex-wrap: wrap;
+}
+
+#clearRow{
+    display: flex;
+    align-items: flex-start;
+}
+
+#clear{
+    background-color: rgb(225,173,80);
+    color: white;
+    width: 35px;
+    padding: 2px 15px 2px 15px;
+    margin: 2px;
+    border-radius: .4em .4em .4em .4em; 
+    text-align: center;
+    padding: 0px;
+}
+
+
+.calcButton{
+    width: 35px;
+    padding: 2px 15px 2px 15px;
+    margin: 2px;
+    border-radius: .4em .4em .6em .6em; 
+    text-align: center;
+    padding: 0px;
+
+    background-color: rgb(188, 183, 167);
+    color: rgb(30, 29,27);
+}
+
+
+
+.funcButton{
+    width: 35px;
+    padding: 2px 15px 2px 15px;
+    margin: 2px;
+    border-radius: .4em .4em .4em .4em; 
+    text-align: center;
+    padding: 0px;
+
+    background-color: rgb(71, 77, 119);
+    color: white;
+}
+
 

@@ -12,19 +12,23 @@
 <body>
     <main>
         <div id="calcShell">
+
             <div id="titleAndScreen">
                 <div id="img-title-model">
                     <img src="./images/minnesota-removebg-preview.png"><div id="brand-n-model"><span>Server Side Calculator</span><span>JP-83 Plus</span></div>
                 </div>
                 <div id="numDisplay"></div>
             </div>
-            <button id="clear" data-char="c">C</button>
-            <section id="calcBody">
-                <button id="seven" class="calcButton" data-char="7">7</button><button id="eight" class="calcButton"data-char="8">8</button><button id="nine" class="calcButton" data-char="9">9</button><button id="plus" class="calcButton" data-char="+">+</button><br>
-                <button id="four" class="calcButton" data-char="4">4</button><button id="five" class="calcButton" data-char="5">5</button><button id="six" class="calcButton" data-char="6">6</button><button id="minus" class="calcButton" data-char="-">-</button><br>
-                <button id="one" class="calcButton" data-char="1">1</button><button id="two" class="calcButton" data-char="2">2</button><button id="three" class="calcButton" data-char="3">3</button><button id="multiply" class="calcButton" data-char="*">x</button><br>
-                <button id="zero" class="calcButton" data-char="0">0</button><button id="dot" class="calcButton" data-char=".">.</button><button id="equals" class="calcButton" data-char="=">=</button><button id="divide" class="calcButton" data-char="/">/</button><br>
-            </section>
+            
+            <div id="calcBody">
+                <div id="clearRow"><button id="clear" data-char="c">C</button><br></div>
+                <div id="numberRows">
+                    <button id="seven" class="calcButton" data-char="7">7</button><button id="eight" class="calcButton"data-char="8">8</button><button id="nine" class="calcButton" data-char="9">9</button><button id="plus" class="funcButton" data-char="+">+</button>
+                    <button id="four" class="calcButton" data-char="4">4</button><button id="five" class="calcButton" data-char="5">5</button><button id="six" class="calcButton" data-char="6">6</button><button id="minus" class="funcButton" data-char="-">-</button>
+                    <button id="one" class="calcButton" data-char="1">1</button><button id="two" class="calcButton" data-char="2">2</button><button id="three" class="calcButton" data-char="3">3</button><button id="multiply" class="funcButton" data-char="*">x</button>
+                    <button id="zero" class="calcButton" data-char="0">0</button><button id="dot" class="calcButton" data-char=".">.</button><button id="equals" class="funcButton" data-char="=">=</button><button id="divide" class="funcButton" data-char="/">/</button>          
+                </div>
+            </div>
         </div>
         <div id="answerBox">ANSWER HERE</div>
         <ul id="history">
