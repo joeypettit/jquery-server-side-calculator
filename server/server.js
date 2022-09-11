@@ -36,9 +36,9 @@ function getAnswer(object){
     return answerAndCalc;
 }
 
-// data
-
-// calculated will be an array of objects {answer: 4, fullCalc: '2 + 2 = 4'}
+// DATA
+// calculated will be an array of objects {answer: '4', fullCalc: '2 + 2 = 4'}.
+// calculator history will be built with this array.
 let calculated = [];
 
 
@@ -70,7 +70,8 @@ app.get('/getAnswer', (req, res) => {
 
 // GET history object
 
-// GET 
+
+
 
 
 

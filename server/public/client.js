@@ -68,21 +68,55 @@ function processChar(event){
    }
 
    
+
+   
     
-    // apply logic to ensure incoming charactar was entered correctly (input rules)
+    // call checkAndPushChar to ensure incoming charactar was entered correctly (input rules)
     // concatenate incoming charactar to global array keys as a string
     // return charactar as a string, or 'quit' if user input was bad
    let charToAppend = checkAndPushChar(thisChar);
+    //    TEST: console.log(charToAppend);
+
+
+   // identify last charactar appended to DOM, set to variable
+   let lastCharInDOM = $('#numDisplay').text();
+   lastCharInDOM = lastCharInDOM[lastCharInDOM.length - 1];
+    //    TEST: console.log('lastCharInDOM', lastCharInDOM);
+
 
     // return out of function if input from user was bad
    if(charToAppend === 'quit'){
     console.log('in processChar, return out for incorrect input');
     return;
-   } else {
+
+        // if charToAppend is an operator, and the previous input was also an operator
+        // remove previous operator from the DOM and append the new one.
+    } else if((lastCharInDOM === '*' || lastCharInDOM === '/' || lastCharInDOM === '+' || lastCharInDOM === '-') 
+        && (charToAppend === '*' || charToAppend === '/' || charToAppend === '+' || charToAppend === '-')){
+            // assign current displayed text to variable
+            let displaySoFar = $('#numDisplay').text();
+            console.log('display so far', displaySoFar);
+        
+            // remove last charactar (the operator) from text, assign new text to variable
+            let updatedDisplay = displaySoFar.slice(0, -1);
+            // concatenate most recent operator input to variable
+            updatedDisplay += charToAppend;
+            console.log('updatedDisplay', updatedDisplay);
+
+            // clear display
+            $('#numDisplay').empty();
+
+            // append to DOM updatedDisplay with most recent operator input
+            $('#numDisplay').append(updatedDisplay);
+
+            
+
+
+
+        } else 
      // append charactar to the dom
     $('#numDisplay').append(charToAppend);
    
-   }
 }
 
 
