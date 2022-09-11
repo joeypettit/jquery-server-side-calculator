@@ -1,3 +1,5 @@
+const { response } = require("express");
+
 $(document).ready(onReady);
 
 // onReady Function
@@ -49,18 +51,19 @@ function buttonHandlers(){
 
 function processChar(event){
  
-    // capture charactar associated with the button that was pushed
+    // capture charactar associated with the button that was pushed, store as variable
    let thisChar = $(event.target).data('char');
 
-   // clear function: if thisChar is "c", then call calculator reset and return
+   // clear function: if thisChar is "c", then call clearCalculator and return
    if(thisChar === 'c'){
     clearCalculator();
     return;
    }
 
-   // equals function: send global object to server for calculation (POST)
-   // recieve answer from server and append to DOM.
+   // if last input is '=' then call equals function
    if(thisChar === '='){
+
+    equals();
     // PUT POST HERE
     // RECIEVE ANSWER
     // Set answer to calcObject.num1
@@ -86,7 +89,6 @@ function processChar(event){
 
     // return out of function if input from user was bad
    if(charToAppend === 'quit'){
-    console.log('in processChar, return out for incorrect input');
     return;
 
         // if charToAppend is an operator, and the previous input was also an operator
@@ -108,11 +110,6 @@ function processChar(event){
 
             // append to DOM updatedDisplay with most recent operator input
             $('#numDisplay').append(updatedDisplay);
-
-            
-
-
-
         } else 
      // append charactar to the dom
     $('#numDisplay').append(charToAppend);
@@ -197,6 +194,33 @@ function clearCalculator(){
         num2: '',
         operator: ''
     }
+
+}
+
+// equals function sends current calcObject to server (POST)
+// clear global calcObject
+// GET request: recieve object containing calculatedHistory (array of objects) from server
+// append answer key from last object in calculatedHistory to #numDisplay
+// set num1 in calcObject to previous answer (so further calculation can be applied)
+// appends #numDisplay with answer
+// updates history on DOM by calling appendHistory
+function equals(){
+    $.ajax({
+        method: 'POST',
+        url: '/calculate',
+        data: calcObject
+
+    }).then((response)=>
+        
+    
+    
+    )
+
+
+
+    // updated history on DOM, take response array as arguement
+    appendHistory();
+
 
 }
 
