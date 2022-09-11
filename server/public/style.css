@@ -5,29 +5,31 @@ body{
 /* calculator shell*/
 
 #calcShell{
-    box-sizing: border-box;
-    width: 250px;
-    height: 600px;
+    box-sizing: content-box;
+    width: 220px;
+    height: 450px;
     background-color: rgb(39, 39, 37);
     margin: 2em;
     padding: .5em;
     border: solid;
-    border-radius: .75em .75em 6em 6em;
+    border-radius: .75em .75em 4em 4em;
 
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     flex-direction: column;
+    align-items: flex-start;
 }
 
 /* Screen Area*/
 
 /* Title with model Number and MN image*/
 span{
-    font-size: 13px;
+    font-size: 12px;
 }
 
 #img-title-model{
     height: 15px;
+    width: 186px;
     text-align: left;
 
     display: flex;
@@ -42,16 +44,22 @@ img{
     color: rgb (71, 76, 72);
     display: flex;
     justify-content: space-between;
-    width:190px;
+    width: 173px;
+    
 }
 
 
 #titleAndScreen{
     background-color: rgb(141, 162, 125);
+
+    border: 10px;
+    border-bottom: 20px;
+    border-style: solid;
+    border-color: black;
     border-radius: .5em;
 
-    box-sizing: content-box;
-    width: 230px;
+    box-sizing: border-box;
+    width: 220px;
     padding: 10px 0px;
     
     display: flex;
@@ -63,12 +71,9 @@ img{
 
 }
 
-
-
-
 #numDisplay{
-    height: 200px;
-    width: 200px;
+    height: 125px;
+    width: 180px;
     background-color: rgb(149,160,106);
     border: 3px solid black;
     border-radius: .2em;
