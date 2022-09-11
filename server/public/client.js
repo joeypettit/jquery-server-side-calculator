@@ -1,5 +1,3 @@
-const { response } = require("express");
-
 $(document).ready(onReady);
 
 // onReady Function
@@ -210,31 +208,58 @@ function equals(){
         url: '/calculate',
         data: calcObject
 
-    }).then((response)=>
-        
+    }).then((response) => {
+        console.log('/calculate POST:', response);
+
+        // GET request for answer history (with latest calulation)
+        $.ajax({
+            method: 'GET',
+            url: '/getAnswerHistory'
+        }).then( (response) =>{
+            // response is an array of objects. 
+            // array is the history of all previous calculation
+            // Each object is a previous calculation:
+            // response ===> [
+            //       {answer: answer,
+            //       fullCalc: this + this = that
+            //       }];
+
+            // set latest answer to a variable
+            let latestAnswer = response[response.length-1].answer;
+
+            // clear #numDisplay and empty global calcObject
+            clearCalculator();
+
+            // set calcObject.num1 to latest answer
+            calcObject.num1 = latestAnswer;
+            
+            // append #numDisplay with latestAnswer
+            $('#numDisplay').append(latestAnswer);
+
+        });
+
+
+    })
+}
+
     
     
-    )
+    
 
 
 
     // updated history on DOM, take response array as arguement
-    appendHistory();
 
 
-}
+
 
 // receive all previous calculations from server
 // clear history list on DOM
 // append updated list
-function appendHistory(){
-
-
-}
-
 
 
 
 // ~~~~~~~~~~ IF TIME ~~~~~~~~~~~
 // -light up last key that was pressed on DOM.
 // -style it up
+// make it so integer answers dont have decimal with zeros (if statment in serverside calulator)

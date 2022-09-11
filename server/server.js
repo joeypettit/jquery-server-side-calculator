@@ -33,6 +33,13 @@ function getAnswer(object){
 
     // return an object with full calculation and answer
     let answerAndCalc = {answer: theAnswer, fullCalc: `${num1} ${operator} ${num2} = ${theAnswer}`} ;
+
+    //OUTPUT OBJECT
+    // {answer: answer,
+    //  fullCalc: this + this = that
+    //  }
+
+
     return answerAndCalc;
 }
 
@@ -51,21 +58,18 @@ app.use(express.urlencoded({ extended: true }));
 
 // ~~~~~~~~ POST REQUESTS ~~~~~~~~~~~
 app.post('/calculate', (req, res) => {
+    console.log('recieved POST request from client, req.body:', req.body);
     let answerAndCalc = getAnswer(req.body);
     calculated.push(answerAndCalc);
-    console.log(req.body);
-    console.log('in /calculate, answerAndCalc:', answerAndCalc);
+    console.log('calculated array is', calculated);
     res.sendStatus(201);
 })
 
 
 // ~~~~~~~~ GET REQUESTS ~~~~~~~~~~
 
-app.get('/getAnswer', (req, res) => {
-    res.send()
-
-
-
+app.get('/getAnswerHistory', (req, res) => {
+    res.send(calculated);
 })
 
 // GET history object
