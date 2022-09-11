@@ -2,4 +2,80 @@ body{
     background-color: azure;
 }
 
-#
+/* calculator shell*/
+
+#calcShell{
+    box-sizing: border-box;
+    width: 250px;
+    height: 600px;
+    background-color: rgb(39, 39, 37);
+    margin: 2em;
+    padding: .5em;
+    border: solid;
+    border-radius: .75em .75em 6em 6em;
+
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+/* Screen Area*/
+
+/* Title with model Number and MN image*/
+span{
+    font-size: 13px;
+}
+
+#img-title-model{
+    height: 15px;
+    text-align: left;
+
+    display: flex;
+    flex-direction: row;
+}
+
+img{
+    width: 13px;
+}
+
+#brand-n-model{
+    color: rgb (71, 76, 72);
+    display: flex;
+    justify-content: space-between;
+    width:190px;
+}
+
+
+#titleAndScreen{
+    background-color: rgb(141, 162, 125);
+    border-radius: .5em;
+
+    box-sizing: content-box;
+    width: 230px;
+    padding: 10px 0px;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+
+
+
+}
+
+
+
+
+#numDisplay{
+    height: 200px;
+    width: 200px;
+    background-color: rgb(149,160,106);
+    border: 3px solid black;
+    border-radius: .2em;
+
+
+}
+
+
+/* BUTTONS */
+
