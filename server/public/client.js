@@ -236,15 +236,28 @@ function equals(){
             // set latest answer to a variable, ensure its a string
             let latestAnswer = String(response[response.length-1].answer);
 
-            // clear #numDisplay and empty global calcObject
-            clearCalculator();
+            // empty global calcObject
+            calcObject = {
+                num1: '',
+                num2: '',
+                operator: ''
+            }
 
             // set calcObject.num1 to latest answer
-            calcObject.num1 = latestAnswer;
-            console.log('latest answer: ', latestAnswer);
+            // calcObject.num1 = latestAnswer;
+            // console.log('latest answer: ', latestAnswer);
+
+            // if screen is getting too crowded, clear screen before appending
+            console.log('# of divs in display:', $('#numDisplay > div').length);
+
+            if($('#numDisplay > div').length >= 3){
+                $('#numDisplay').empty();
+            }
+            
+            
             
             // append #numDisplay with latestAnswer
-            $('#numDisplay').append(latestAnswer);
+            $('#numDisplay').append(`<div class='answer'>${latestAnswer}</div>`);
 
             // call updateHistory to append history to DOM
             updateHistory(response);

@@ -78,6 +78,11 @@ img{
     font-family: LCD-SOLID;
 }
 
+.answer{
+    display: flex;
+    justify-content: flex-end;
+}
+
 
 /* ~~~~~~~~~~~BUTTONS~~~~~~~~~~ */
 
