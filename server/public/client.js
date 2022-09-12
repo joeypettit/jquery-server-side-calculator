@@ -74,6 +74,7 @@ function processChar(event){
    // if last input is '=' then call equals function
    if(thisChar === '='){
     equals();
+    return;
    }
 
    
@@ -118,10 +119,8 @@ function processChar(event){
             $('#numDisplay').append(updatedDisplay);
         } else if (charToAppend === '(-)'){
             $('#numDisplay').append('-');
-
-
         }else 
-     // append charactar to the dom
+     // append all other charactars to the dom
     $('#numDisplay').append(charToAppend);
    
 }
@@ -230,51 +229,61 @@ function clearCalculator(){
 // appends #numDisplay with answer
 // updates history on DOM by calling appendHistory
 function equals(){
-    $.ajax({
-        method: 'POST',
-        url: '/calculate',
-        data: calcObject
-
-    }).then((response) => {
-        // GET request for answer history (with latest calulation)
+    // check to make sure calcObject is full. if not, alert user
+    if(calcObject.num2 === ''){
+        alert('Please input two numbers to calculate.');
+    } else{
         $.ajax({
-            method: 'GET',
-            url: '/getAnswerHistory'
-        }).then( (response) =>{
-            // response is an array of objects. 
-            // array is the history of all previous calculation
-            // Each object is a previous calculation:
-            // response ===> [
-            //       {answer: answer,
-            //       fullCalc: this + this = that
-            //       }];
+            method: 'POST',
+            url: '/calculate',
+            data: calcObject
+    
+        }).then((response) => {
+            // GET request for answer history (with latest calulation)
+            $.ajax({
+                method: 'GET',
+                url: '/getAnswerHistory'
+            }).then( (response) =>{
+                // response is an array of objects. 
+                // array is the history of all previous calculation
+                // Each object is a previous calculation:
+                // response ===> [
+                //       {answer: answer,
+                //       fullCalc: this + this = that
+                //       }];
+    
+                // set latest answer to a variable, ensure its a string
+                let latestAnswer = String(response[response.length-1].answer);
+    
+                // empty global calcObject
+                calcObject = {
+                    num1: '',
+                    num2: '',
+                    operator: ''
+                }
+    
+                // set calcObject.num1 to latest answer
+                // calcObject.num1 = latestAnswer;
+                // console.log('latest answer: ', latestAnswer);
+    
+                // if screen is getting too crowded, clear screen before appending
+                if($('#numDisplay > div').length >= 3){
+                    $('#numDisplay').empty();
+                }
+                
+                // append #numDisplay with latestAnswer
+                $('#numDisplay').append(`<div class='answer'>${latestAnswer}</div>`);
+    
+                // call updateHistory to append history to DOM
+                updateHistory(response);
+            });
+        })
 
-            // set latest answer to a variable, ensure its a string
-            let latestAnswer = String(response[response.length-1].answer);
 
-            // empty global calcObject
-            calcObject = {
-                num1: '',
-                num2: '',
-                operator: ''
-            }
+    }
 
-            // set calcObject.num1 to latest answer
-            // calcObject.num1 = latestAnswer;
-            // console.log('latest answer: ', latestAnswer);
 
-            // if screen is getting too crowded, clear screen before appending
-            if($('#numDisplay > div').length >= 3){
-                $('#numDisplay').empty();
-            }
-            
-            // append #numDisplay with latestAnswer
-            $('#numDisplay').append(`<div class='answer'>${latestAnswer}</div>`);
-
-            // call updateHistory to append history to DOM
-            updateHistory(response);
-        });
-    })
+    
 }
 
 // clear DOM history section
