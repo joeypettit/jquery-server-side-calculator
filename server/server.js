@@ -34,7 +34,8 @@ function getAnswer(object){
 
         // else round to 4 decimals
     } else{
-        theAnswer = theAnswer.toFixed(4);
+        theAnswer = theAnswer.toFixed(6);
+        theAnswer = parseFloat(theAnswer);
     }
     
 
