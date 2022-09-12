@@ -97,7 +97,7 @@ img{
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
-}
+}   
 
 #clear{
     background-color: rgb(225,173,80);

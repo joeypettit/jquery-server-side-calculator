@@ -125,11 +125,12 @@ function checkAndPushChar(thisChar){
     // capture charactar from associated button on calculator  
     // ensure thisChar is a string so it concatenates correctly to object keys
     let charToCheck = String(thisChar);
- 
-    console.log('before operator check:', charToCheck);
+
+    console.log(calcObject);
+
     
     // ~~~~~~~~~~~~~~~ restrictions ~~~~~~~~~~~~~~~~~~~~~
-
+    
     // if user begins with an operator, alert them to press a number instead,
     // return out of function.
     if(calcObject.num1 === '' && (charToCheck === '*' || charToCheck === '/' || charToCheck === '+' || charToCheck === '-' || charToCheck === '=')){
@@ -144,12 +145,15 @@ function checkAndPushChar(thisChar){
         return 'quit';
     }
 
+
+
+
     // check if previous charToCheck was a '.', if it was ignore input of a second '.'
-    if((calcObject.num1[calcObject.num1.length - 1] === '.' || calcObject.num2[calcObject.num1.length] - 1 === '.') && charToCheck==="."){
+    if(((calcObject.num1[calcObject.num1.length - 1] === '.') || calcObject.num2[calcObject.num1.length] - 1 === '.') && charToCheck==="."){
         console.log('previous char was a "."');
         return 'quit';
         // if calcObject.num1 already has a '.', ignore input of a second '.'
-    } else if (calcObject.num1.includes('.') && calcObject.num2 ==='' && charToCheck === '.'){
+    } else if (calcObject.num1.includes('.') && calcObject.operator ==='' && charToCheck === '.'){
         console.log('num1 already has a "."');
         return 'quit';
         // if calcObject.num2 already has a '.', ignore input of a second '.'
@@ -229,21 +233,21 @@ function equals(){
             //       fullCalc: this + this = that
             //       }];
 
-            // set latest answer to a variable
-            let latestAnswer = response[response.length-1].answer;
+            // set latest answer to a variable, ensure its a string
+            let latestAnswer = String(response[response.length-1].answer);
 
             // clear #numDisplay and empty global calcObject
             clearCalculator();
 
             // set calcObject.num1 to latest answer
             calcObject.num1 = latestAnswer;
+            console.log('latest answer: ', latestAnswer);
             
             // append #numDisplay with latestAnswer
             $('#numDisplay').append(latestAnswer);
 
             // call updateHistory to append history to DOM
             updateHistory(response);
-
         });
     })
 }
@@ -259,7 +263,6 @@ function updateHistory(historyArray){
         let appendString = '';
         for (let i = historyArray.length - 1; i >= 0; i--){
             appendString += `<li class = "calcList">${historyArray[i].fullCalc}</li>`;
-            console.log('appendString =', appendString);
         }
         return appendString;
     })

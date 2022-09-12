@@ -29,7 +29,14 @@ function getAnswer(object){
     }
 
     // round answer to two decimal places
-    theAnswer = theAnswer.toFixed(2);
+    if(Number.isInteger(theAnswer)){
+        // do nothing
+
+        // else round to 4 decimals
+    } else{
+        theAnswer = theAnswer.toFixed(4);
+    }
+    
 
     // return an object with full calculation and answer
     let answerAndCalc = {answer: theAnswer, fullCalc: `${num1} ${operator} ${num2} = ${theAnswer}`} ;
