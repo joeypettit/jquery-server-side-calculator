@@ -1,3 +1,5 @@
+
+
 $(document).ready(onReady);
 
 // onReady Function
@@ -47,6 +49,9 @@ function buttonHandlers(){
 
     // clear button handler
     $('#clear').on('click', processChar);
+
+    // clear HISTORY button handler
+    $('#clearHistory').on('click', clearHistory);
 }
 
 
@@ -245,8 +250,6 @@ function equals(){
                 $('#numDisplay').empty();
             }
             
-            
-            
             // append #numDisplay with latestAnswer
             $('#numDisplay').append(`<div class='answer'>${latestAnswer}</div>`);
 
@@ -272,7 +275,24 @@ function updateHistory(historyArray){
     })
 
 }
-    
+
+// clear DOM
+// DELETE request to clear calculated array on server
+function clearHistory(){
+    // clear server side array of calculations
+    $.ajax({
+        method: 'DELETE',
+        url: '/deleteHistory'
+    })
+
+    // clear history section on DOM
+    $('#history').empty();
+}
+
+
+
+
+
     
     
 

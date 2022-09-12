@@ -80,7 +80,12 @@ app.get('/getAnswerHistory', (req, res) => {
     res.send(calculated);
 })
 
-// GET history object
+// ~~~~~~~~~~ DELETE Request ~~~~~~~~~
+app.delete('/deleteHistory', (req, res) => {
+    calculated = [];
+    res.sendStatus(204);
+    console.log('deleted?', calculated);
+})
 
 
 
