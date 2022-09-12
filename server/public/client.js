@@ -47,6 +47,9 @@ function buttonHandlers(){
     $('#equals').on('click', processChar);
     $('#dot').on('click', processChar);
 
+    // negative button handler
+    $('#negative').on('click', processChar);
+
     // clear button handler
     $('#clear').on('click', processChar);
 
@@ -70,12 +73,7 @@ function processChar(event){
 
    // if last input is '=' then call equals function
    if(thisChar === '='){
-
     equals();
-    // PUT POST HERE
-    // RECIEVE ANSWER
-    // Set answer to calcObject.num1
-    // put answer in numDisplay in DOM
    }
 
    
@@ -118,7 +116,11 @@ function processChar(event){
 
             // append to DOM updatedDisplay with most recent operator input
             $('#numDisplay').append(updatedDisplay);
-        } else 
+        } else if (charToAppend === '(-)'){
+            $('#numDisplay').append('-');
+
+
+        }else 
      // append charactar to the dom
     $('#numDisplay').append(charToAppend);
    
@@ -130,6 +132,7 @@ function checkAndPushChar(thisChar){
     // capture charactar from associated button on calculator  
     // ensure thisChar is a string so it concatenates correctly to object keys
     let charToCheck = String(thisChar);
+    console.log('This Char is', charToCheck);
 
     
     // ~~~~~~~~~~~~~~~ restrictions ~~~~~~~~~~~~~~~~~~~~~
@@ -164,6 +167,21 @@ function checkAndPushChar(thisChar){
         console.log('num2 already has a "."');
         return 'quit';
     }
+
+
+    //~~~~~~~~~~~~~~~~~~ negative key ~~~~~~~~~~~~~~~~
+    if(charToCheck === '(-)' && calcObject.num1 === ''){
+        calcObject.num1 += '-';
+        return '(-)';
+    } else if(charToCheck === '(-)' && calcObject.num1 != '' && calcObject.operator === ''){
+        return 'quit';
+    } else if (charToCheck === '(-)' && calcObject.num2 === '' && calcObject.operator != ''){
+        calcObject.num2 += '-';
+        return '(-)';
+    } else if(charToCheck === '(-)' && calcObject.num2 != ''){
+        return 'quit';
+    }
+
 
 
     // ~~~~~~~~~~~~~~~~~~ num1 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
