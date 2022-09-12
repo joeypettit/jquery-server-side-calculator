@@ -126,8 +126,6 @@ function checkAndPushChar(thisChar){
     // ensure thisChar is a string so it concatenates correctly to object keys
     let charToCheck = String(thisChar);
 
-    console.log(calcObject);
-
     
     // ~~~~~~~~~~~~~~~ restrictions ~~~~~~~~~~~~~~~~~~~~~
     
@@ -168,8 +166,7 @@ function checkAndPushChar(thisChar){
     // is not there, then this must be the first number ===> concatenate charToCheck to calcObject.num1
     if (calcObject.operator === '' && ((charToCheck >= '0' && charToCheck <= '9')|| charToCheck === '.')){
         calcObject.num1 += charToCheck;
-            console.log('updating num1', calcObject);
-            return charToCheck;
+        return charToCheck;
     }
 
     // ~~~~~~~~~~~~~~~~~ operator ~~~~~~~~~~~~~~~~~~~~~~~
@@ -177,7 +174,6 @@ function checkAndPushChar(thisChar){
         // reassigning prevents two operators from being used.
         if (charToCheck === '*' || charToCheck === '/' || charToCheck === '+' || charToCheck === '-'){
             calcObject.operator = charToCheck;
-            console.log('updating operator', calcObject);
             return charToCheck;
         }    
 
@@ -186,7 +182,6 @@ function checkAndPushChar(thisChar){
             // in the calculation, concatenate charToCheck to calcObject.num2
         if(calcObject.operator != '' && (charToCheck >= '0' && charToCheck <= '9' || charToCheck === '.')){
             calcObject.num2 += charToCheck;
-            console.log('updating num2', calcObject);
             return charToCheck;
         } 
         
@@ -218,8 +213,6 @@ function equals(){
         data: calcObject
 
     }).then((response) => {
-        console.log('/calculate POST:', response);
-
         // GET request for answer history (with latest calulation)
         $.ajax({
             method: 'GET',
@@ -248,8 +241,6 @@ function equals(){
             // console.log('latest answer: ', latestAnswer);
 
             // if screen is getting too crowded, clear screen before appending
-            console.log('# of divs in display:', $('#numDisplay > div').length);
-
             if($('#numDisplay > div').length >= 3){
                 $('#numDisplay').empty();
             }
