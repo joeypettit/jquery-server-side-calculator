@@ -338,8 +338,7 @@ function clearHistory(){
 
 // ~~~~~~~~~~ IF TIME ~~~~~~~~~~~
 // -light up last key that was pressed on DOM.
-// -style it up
-
-// -make it so integer answers dont have decimal with zeros (if statment in serverside calulator)
-// -limit accuracy of calculator to two decimal places
+// -STRETCH create ability to pull caclulations back in from history
+//      -must add num1, num2, operator to object that returns to client from server for each calculation
+// -Deploy to Heroku
 
