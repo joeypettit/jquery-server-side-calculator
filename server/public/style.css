@@ -3,7 +3,7 @@ body{
 }
 
 /* custom font  */
-@font-face { font-family: 'LCD-SOLID'; src: url('./fonts/LcdSolid-VPzB.ttf'); }
+@font-face { font-family: 'LCD-SOLID'; src: url('./Fonts/LcdSolid-VPzB.ttf'); }
 
 /* calculator shell*/
 
